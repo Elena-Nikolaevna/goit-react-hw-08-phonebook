@@ -1,8 +1,5 @@
-//import React from 'react';
-///import PropTypes from 'prop-types';
 import css from './Filter.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-//import { getFilter } from 'redux/contactsSlice';
 import { getFilter } from '../../redux/phonebook/selectors';
 import { filterChangeAction } from '../../redux/phonebook/actions';
 
@@ -22,9 +19,4 @@ export default function Filter() {
       ></input>
     </div>
   );
-};
-
-/* Filter.propTypes = {
-  filter: PropTypes.string,
-  onChange: PropTypes.func.isRequired,
-}; */
+}
