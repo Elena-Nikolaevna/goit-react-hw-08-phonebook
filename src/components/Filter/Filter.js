@@ -1,22 +1,27 @@
 import css from './Filter.module.css';
-import { useDispatch, useSelector } from 'react-redux';
-import { getFilter } from '../../redux/phonebook/selectors';
-import { filterChangeAction } from '../../redux/phonebook/actions';
+import { Form, Formik, ErrorMessage } from 'formik';
+import { useDispatch } from 'react-redux';
+import { setStatusFilter } from 'redux/contacts/filterSlice';
 
-export default function Filter() {
-  const value = useSelector(getFilter);
+const initialValues = {
+  filter: '',
+};
+
+export const Filter = () => {
+  //const value = useSelector(getFilter);
   const dispatch = useDispatch();
-  const handleFilterChange = event =>
-    dispatch(filterChangeAction(event.target.value));
+  const handleOnChange = event => {
+    const { value: filter } = event.target;
+
+    dispatch(setStatusFilter(filter));
+  };
   return (
-    <div className={css.filterWrap}>
-      <label className={css.label}>Find contact by name</label>
-      <input
-        className={css.input}
-        value={value}
-        type="text"
-        onChange={handleFilterChange}
-      ></input>
-    </div>
+    <Formik initialValues={initialValues}>
+      <Form onChange={handleOnChange}>
+        <label htmlFor="filter">Find contact by Name</label>
+        <input className={css.input} type="text"></input>
+        <ErrorMessage name="filter" component="div" />
+      </Form>
+    </Formik>
   );
-}
+};
