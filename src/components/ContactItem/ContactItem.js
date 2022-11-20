@@ -2,37 +2,40 @@
 //import PropTypes from 'prop-types';
 import css from './ContactItem.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteContact } from 'redux/contacts/operations';
-import { getVisibleContacts } from 'redux/contacts/selectors';
-import Button from '@mui/material/Button';
-//import DeleteIcon from '@mui/icons-material/Delete';
+//import { deleteItems } from 'redux/contactsSlice';
+import {
+  deleteContacts,
+  fetchContacts,
+  getVisibleContacts,
+} from '../../redux/phonebook/selectors';
+import { useEffect } from 'react';
 
-export const ContactList = () => {
+export const ContactItem = () => {
   const dispatch = useDispatch();
-
-  const removeContact = contactId => {
-    dispatch(deleteContact(contactId));
+  const contacts = useSelector(getVisibleContacts);
+  const onDeleteContactCard = id => {
+    dispatch(deleteContacts(id));
   };
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
 
-  const visibleContacts = useSelector(getVisibleContacts);
-
-  
   return (
     <ul className={css.contactsList}>
-      {visibleContacts.map(({ id, name, number }) => { return (
+      {contacts.map(({ id, name, phone }) => (
         <li className={css.contactsItem} key={id}>
           <span className={css.contactText}>
-            {name} : {number}
+            {name} : {phone}
           </span>
-          <Button
-              variant="outlined"
-              onClick={() => removeContact(id)}
-              
-            >
+          <button
+            type="button"
+            onClick={() => onDeleteContactCard(id)}
+            className={css.button}
+          >
             Delete
-          </Button>
+          </button>
         </li>
-      )})}
+      ))}
     </ul>
   );
 };
