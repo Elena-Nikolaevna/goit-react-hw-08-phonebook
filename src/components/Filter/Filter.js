@@ -1,29 +1,32 @@
 //import React from 'react';
 ///import PropTypes from 'prop-types';
 import css from './Filter.module.css';
-import { useDispatch, useSelector } from 'react-redux';
-//import { getFilter } from 'redux/contactsSlice';
-import { getFilter } from '../../redux/phonebook/selectors';
-import { filterChangeAction } from '../../redux/phonebook/actions';
+import { useDispatch } from 'react-redux';
+import { setFilter } from '../../redux/contacts/filtersSlice';
+import { nanoid } from 'nanoid';
 
-export default function Filter() {
-  const value = useSelector(getFilter);
+const Filter = () => {
   const dispatch = useDispatch();
-  const handleFilterChange = event =>
-    dispatch(filterChangeAction(event.target.value));
+
+  const changeFilter = e => {
+    const { value } = e.target;
+    dispatch(setFilter(value.trim()));
+    // console.log(value);
+  };
   return (
     <div className={css.filterWrap}>
       <label className={css.label}>Find contact by name</label>
       <input
         className={css.input}
-        value={value}
+        id={nanoid()}
         type="text"
-        onChange={handleFilterChange}
+        name="filter"
+        onChange={changeFilter}
       ></input>
     </div>
   );
 };
-
+export default Filter;
 /* Filter.propTypes = {
   filter: PropTypes.string,
   onChange: PropTypes.func.isRequired,
