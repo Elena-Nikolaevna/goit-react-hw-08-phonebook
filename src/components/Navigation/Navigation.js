@@ -4,17 +4,19 @@ import { useAuth } from 'hooks';
 
 export const Navigation = () => {
   const { isLoggedIn } = useAuth();
+  const activeLink = ({ isActive }) =>
+    isActive ? `${css.link} ${css.activeLink}` : css.link;
 
   return (
-    <nav>
-      <NavLink className={css.link} to="/">
+    <div className={css.navigation__box}>
+      <NavLink className={activeLink} to="/">
         Home
       </NavLink>
       {isLoggedIn && (
-        <NavLink className={css.link} to="/contacts">
+        <NavLink className={activeLink} to="/contacts">
           Phonebook
         </NavLink>
       )}
-    </nav>
+    </div>
   );
 };
