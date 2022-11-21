@@ -20,11 +20,13 @@ const styles = {
     marginBottom: 50,
     fontWeight: 700,
     fontSize: 80,
+    color: '#002f6c'
+
   },
   text: {    
-    fontWeight: 400,
+    fontWeight: 700,
     fontSize: 48,
-    
+    color: '#002f6c'
   }
 };
 
