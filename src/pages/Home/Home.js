@@ -7,20 +7,24 @@ const styles = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    
+
   },
   title: {
     fontWeight: 500,
     fontSize: 48,
     textAlign: 'center',
+    margin: 30,
   },
   hello: {
-    marginBottom: 100,
+    marginBottom: 50,
     fontWeight: 700,
     fontSize: 80,
   },
   text: {    
     fontWeight: 400,
     fontSize: 48,
+    
   }
 };
 
@@ -29,7 +33,7 @@ export default function Home() {
     <div style={styles.container}>
       <h1 style={styles.title}>
         <div style={styles.hello}>Hello!</div>
-        <div style={styles.text}>I am your personal phone book! </div>
+        <div style={styles.text}>I am your personal <br></br> phone book! </div>
       </h1>
       <Image src={image} alt="img" objectFit="cover" width="450px" />
     </div>
