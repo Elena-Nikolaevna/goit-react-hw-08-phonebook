@@ -8,15 +8,17 @@
     margin: 25px auto;
   }
   .label {
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     font-weight: 700;
+    color: #eeffff;
   }
   .input {
     font-size: 17px;
   }
   
   .button {
-    background-color: #d6c162;
+    background-color: #4f83cc;
+    color: #eeffff;
     padding: 10px 20px;
     width: 200px;
     border-radius: 5px;
@@ -29,5 +31,6 @@
   
   .button:hover,
   .button:focus {
-    background-color: #f1e758;
+    background-color: #edffff;
+    color: #002f6c;
   }
