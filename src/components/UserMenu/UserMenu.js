@@ -12,7 +12,7 @@ const UserMenu = () => {
 
   return (
     <div className={css.user__menu}>
-      <p className={css.welcome__user}>Welcome:<div className={css.user_name}>{user.name}</div> </p>
+      <p className={css.welcome__user}>Welcome:<span className={css.user_name}>{user.name}</span> </p>
       <button className={css.logout__button} type="button" onClick={handleLogOut}>
         Logout
       </button>
