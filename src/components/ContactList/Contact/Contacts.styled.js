@@ -5,18 +5,24 @@ export const ContactWrapper = styled.div`
   align-items: center;
   gap: 15px;
   padding: 5px 0;
+  background-color: #4f83cc;
+  border-radius: 20px;
 `;
 
 export const Text = styled.p`
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  //flex-direction: column;
   align-items: flex-start;
   gap: 5px;
   font-family: inherit;
-  font-size: 15px;
+  font-size: 20px;
+  font-weight: 500;
   flex-grow: 1;
+  color: #edffff;
   span {
-    font-size: 12px;
+    font-size: 20px;
+    color: #edffff;
   }
 `;
 
@@ -25,6 +31,7 @@ export const Avatar = styled.div`
   align-items: center;
   justify-content: center;
   width: 30px;
+  margin-left: 10px;
   height: 30px;
   border-radius: 50%;
   background-color: ${props => props.color};
@@ -35,7 +42,8 @@ export const Button = styled.button`
   align-items: center;
   justify-content: center;
   padding: 0;
-  margin: 0;
+  margin-right: 10px;
+  //margin: 0;
   border: none;
   background-color: transparent;
   cursor: pointer;
