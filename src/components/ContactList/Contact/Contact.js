@@ -22,9 +22,9 @@ export const Contact = ({ contact: { id, name, number } }) => {
     <ContactWrapper>
       <Avatar color={getRandomHexColor()}>{upFirst(name)}</Avatar>
 
-      <Text>
+      <Text> 
         {name}
-        <span>Phone: {number}</span>
+        <span> {number}</span>
       </Text>
 
       <Button type="button" onClick={handleDelete}>
