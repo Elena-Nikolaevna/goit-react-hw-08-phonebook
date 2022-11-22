@@ -11,9 +11,9 @@ const UserMenu = () => {
   const handleLogOut = () => dispatch(logOut());
 
   return (
-    <div className={css.wrapper}>
-      <p className={css.username}>Welcome, {user.name}</p>
-      <button type="button" onClick={handleLogOut}>
+    <div className={css.user__menu}>
+      <p className={css.welcome__user}>Welcome:<div className={css.user_name}>{user.name}</div> </p>
+      <button className={css.logout__button} type="button" onClick={handleLogOut}>
         Logout
       </button>
     </div>
