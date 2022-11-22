@@ -6,8 +6,8 @@ import { selectError, selectIsLoading } from 'redux/contacts/selectors';
 import Phonebook from 'components/Phonebook/Phonebook';
 import Filter from 'components/Filter/Filter';
 import ContactList from 'components/ContactList/ContactList';
+import css from './Contacts.module.css'
 
-import { Container } from './Contacts.styled';
 
 const Contacts = () => {
   const dispatch = useDispatch();
@@ -19,12 +19,12 @@ const Contacts = () => {
   }, [dispatch]);
 
   return (
-    <Container>
+    <div className={css.container}>
       <Phonebook />
       <Filter />
       {isLoading && !error && <b>Request in progress...</b>}
       <ContactList />
-    </Container>
+    </div>
   );
 };
 
