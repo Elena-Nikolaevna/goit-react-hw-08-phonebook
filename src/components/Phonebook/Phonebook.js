@@ -1,13 +1,13 @@
 import ContactForm from 'components/ContactForm/ContactForm';
+import css from './Phonebook.module.css';
 
-import { Title, SubTitle } from './Phonebook.styled';
 
 const Phonebook = () => {
   return (
     <>
-      <Title>Phonebook</Title>
+      <h1 className= {css.title} >Phonebook</h1>
       <ContactForm />
-      <SubTitle>Contacts</SubTitle>
+      < h2 className= {css.sub_title}>Contacts</h2>
     </>
   );
 };
