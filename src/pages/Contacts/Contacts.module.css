@@ -1,0 +1,10 @@
+.container {
+  width: 400px;
+  padding: 20px;
+  margin: 0 auto;
+  //border: 1px solid black;
+  background-color: #01579b;
+  border-radius: 10px;
+  box-shadow: rgb(0 0 0 / 20%) 4px 4px 4px 4px,
+    rgb(0 0 0 / 14%) 4px 4px 4px 4px, rgb(0 0 0 / 12%) 4px 4px 4px 4px;
+}
