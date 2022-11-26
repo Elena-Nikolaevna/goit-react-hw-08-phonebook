@@ -17,7 +17,7 @@ const RegisterForm = () => {
     console.log(credentials);
 
     dispatch(register(credentials));
-    form.reset();
+    //form.reset();
   };
 
   return (
