@@ -1,4 +1,4 @@
-import { createSlice, isAnyOf } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import { register, logIn, logOut, refreshUser } from './operations';
 
 const initialState = {
@@ -6,71 +6,66 @@ const initialState = {
   token: null,
   isLoggedIn: false,
   isRefreshing: false,
-};
-
-// const extraActions = [register, logIn, logOut, refreshUser];
-// const getActionsWithType = type =>
-//   extraActions.map(extraAction => extraAction[type]);
-// console.log(getActionsWithType('fulfilled'));
-
-const handleRegisterSuccess = (state, action) => {
-  state.user = action.payload.user;
-  state.token = action.payload.token;
-  state.isLoggedIn = true;
-};
-
-const hahandlelogInSuccess = (state, action) => {
-  state.user = action.payload.user;
-  state.token = action.payload.token;
-  state.isLoggedIn = true;
-};
-
-const hahandlelogOutSuccess = state => {
-  state.user = { name: null, email: null };
-  state.token = null;
-  state.isLoggedIn = false;
-};
-
-const hahandlerefreshUserSuccess = (state, action) => {
-  state.user = action.payload;
-  state.isLoggedIn = true;
-  // state.isRefreshing = false;
+  authErrorLogIn: null,
 };
 
 const authSlice = createSlice({
   name: 'auth',
-  initialState,
-
-  extraReducers: builder => {
-    builder
-
-      //fulfilled
-      .addCase(register.fulfilled, handleRegisterSuccess)
-      .addCase(logIn.fulfilled, hahandlelogInSuccess)
-      .addCase(logOut.fulfilled, hahandlelogOutSuccess)
-      .addCase(refreshUser.fulfilled, hahandlerefreshUserSuccess)
-
-      .addMatcher(
-        isAnyOf(
-          register.pending,
-          logIn.pending,
-          register.rejected,
-          logIn.rejected
-        ),
-        state => state
-      )
-
-      .addMatcher(
-        isAnyOf(
-          refreshUser.pending,
-          refreshUser.fulfilled,
-          refreshUser.rejected
-        ),
-        state => {
-          state.isRefreshing = !state.isRefreshing;
-        }
-      );
+  initialState: initialState,
+  reducers: {
+    updateErrorLogIn(state, action) {
+      state.authErrorLogIn = action.payload;
+    },
+    updateErrorRegister(state, action) {
+      state.authErrorRegister = action.payload;
+    },
+  },
+  extraReducers: {
+    [register.pending](state) {
+      state.authErrorRegister = null;
+    },
+    [register.fulfilled](state, action) {
+      state.user = action.payload.user;
+      state.token = action.payload.token;
+      state.isLoggedIn = true;
+      state.authErrorRegister = null;
+    },
+    [register.rejected](state, action) {
+      state.isLoggedIn = false;
+      state.authErrorRegister = action.payload;
+    },
+    [logIn.pending](state) {
+      state.authErrorLogIn = null;
+    },
+    [logIn.fulfilled](state, action) {
+      state.user = action.payload.user;
+      state.token = action.payload.token;
+      state.isLoggedIn = true;
+      state.authErrorLogIn = null;
+    },
+    [logIn.rejected](state, action) {
+      state.isLoggedIn = false;
+      state.authErrorLogIn = action.payload;
+    },
+    [logOut.fulfilled](state) {
+      state.user = { name: null, email: null };
+      state.token = null;
+      state.isLoggedIn = false;
+    },
+    [refreshUser.pending](state) {
+      state.isRefreshing = true;
+    },
+    [refreshUser.fulfilled](state, action) {
+      state.user = action.payload;
+      state.isLoggedIn = true;
+      state.isRefreshing = false;
+    },
+    [refreshUser.rejected](state) {
+      state.isRefreshing = false;
+    },
   },
 });
+
+export const { updateErrorLogIn, updateErrorRegister } = authSlice.actions;
 
 export const authReducer = authSlice.reducer;
