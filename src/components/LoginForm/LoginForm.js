@@ -17,7 +17,7 @@ const LoginForm = () => {
     };
     console.log(credentials);
     dispatch(logIn(credentials));
-    form.reset();
+    //form.reset();
   };
   return (    
       <section>
