@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import toast from 'react-hot-toast';
 
 axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
 
@@ -45,6 +46,7 @@ export const logIn = createAsyncThunk(
       // console.log(response.data);
       return response.data;
     } catch (error) {
+      toast.error('This user is not register');
       return thunkAPI.rejectWithValue(error.message);
     }
   }
