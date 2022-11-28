@@ -30,11 +30,18 @@ const LoginForm = () => {
   };
   return (
     <section>
+     
       <form
         className={css.phonebookForm}
         onSubmit={handleSubmit}
         autoComplete="off"
       >
+         {error && (
+        <div className={css.errorMessage}>
+          Ouch!!! <br></br> You may have made a mistake :( <br></br> Please
+          check the entered data...
+        </div>
+      )}
         <div className={css.inputBox}>
           <label className={css.label}>
             Email<span className={css.required}>*</span>
@@ -59,12 +66,7 @@ const LoginForm = () => {
           </button>
         </div>
       </form>
-      {error && (
-        <div className={css.errorMessage}>
-          Ouch!!! <br></br> You may have made a mistake :( <br></br> Please
-          check the entered data...
-        </div>
-      )}
+      
     </section>
   ); /* <form className={css.form} onSubmit={handleSubmit} autoComplete="off">
       <label className={css.label}>
